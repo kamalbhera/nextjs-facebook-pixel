@@ -2,10 +2,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-
+import * as fbq from '../lib/fpixel'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const handleClick = () => {
+    fbq.event('Purchase', { currency: 'USD', value: 10 })
+  }
   return (
     <>
       <Head>
@@ -16,6 +19,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
+          <button type="button" onClick={handleClick}>
+          Buy $10
+        </button>
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.js</code>
